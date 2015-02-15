@@ -19,7 +19,7 @@ class Templating
     {
         $result = array(
             'verdict' => $verdict,
-            'content' => $content
+            'content' => $content,
         );
 
         if (!empty($custom) && is_array($custom)) {

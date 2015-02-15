@@ -103,7 +103,7 @@ class Inflector
      */
     public static function singularize($word)
     {
-        $singular = array (
+        $singular = array(
             '/(quiz)zes$/i' => '\1',
             '/(matr)ices$/i' => '\1ix',
             '/(vert|ind)ices$/i' => '\1ex',
@@ -137,7 +137,7 @@ class Inflector
             'man' => 'men',
             'child' => 'children',
             'sex' => 'sexes',
-            'move' => 'moves'
+            'move' => 'moves',
         );
 
         $lowercased_word = strtolower($word);
@@ -273,17 +273,17 @@ class Inflector
     }
 
     /**
-    * Converts a class name to its table name according to rails
-    * naming conventions.
-    *
-    * Converts "Person" to "people"
-    *
-    * @access public
-    * @static
-    * @see classify
-    * @param    string    $class_name    Class name for getting related table_name.
-    * @return string plural_table_name
-    */
+     * Converts a class name to its table name according to rails
+     * naming conventions.
+     *
+     * Converts "Person" to "people"
+     *
+     * @access public
+     * @static
+     * @see classify
+     * @param  string $class_name Class name for getting related table_name.
+     * @return string plural_table_name
+     */
     public static function tableize($class_name)
     {
         return self::pluralize(self::underscore($class_name));

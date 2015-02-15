@@ -27,8 +27,8 @@ class Text
     );
 
     /**
-    * Slugify the string
-    */
+     * Slugify the string
+     */
     public static function slugify($text, $strtolower = true, $replaceSpace = true)
     {
         $text = strtr($text, self::$slugifyReplaceArray);
@@ -49,9 +49,9 @@ class Text
     }
 
     /**
-    * Truncates +text+ to the length of +length+ and replaces the last three characters with the +truncateString+
-    * if the +text+ is longer than +length+.
-    */
+     * Truncates +text+ to the length of +length+ and replaces the last three characters with the +truncateString+
+     * if the +text+ is longer than +length+.
+     */
     public static function truncate($text, $length = 30, $truncateString = '...', $truncateLastSpace = false)
     {
         if (is_string($text) && '' !== $text) {

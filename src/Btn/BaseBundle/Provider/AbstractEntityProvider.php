@@ -18,7 +18,6 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     {
         $this->class = $class;
         $this->em    = $em;
-
     }
 
     /**

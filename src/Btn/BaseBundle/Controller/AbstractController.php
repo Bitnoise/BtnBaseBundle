@@ -158,13 +158,13 @@ abstract class AbstractController extends Controller
     }
 
     /**
-    * check if object belongs to the logged user or user has $roles granted
-    * if not throw exception
-    *
-    * @param object $object - must have getUser() which return User object
-    * @param array/string  $roles  - roles/role which pass, ROLE_ADMIN by default, might
-    *
-    */
+     * check if object belongs to the logged user or user has $roles granted
+     * if not throw exception
+     *
+     * @param object       $object - must have getUser() which return User object
+     * @param array/string $roles  - roles/role which pass, ROLE_ADMIN by default, might
+     *
+     */
     public function exceptionIfNotUserOrIsGranted($object, $roles = array('ROLE_ADMIN'))
     {
         if (
