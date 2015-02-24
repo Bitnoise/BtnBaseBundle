@@ -64,6 +64,14 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     /**
      *
      */
+    public function createQueryBuilder()
+    {
+        return $this->getRepository()->createQueryBuilder($this->getAlias());
+    }
+
+    /**
+     *
+     */
     public function getRepository()
     {
         return $this->em->getRepository($this->getClass());

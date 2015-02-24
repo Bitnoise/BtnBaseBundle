@@ -7,6 +7,7 @@ interface EntityProviderInterface
     public function getEntityManager();
     public function getClass();
     public function getAlias();
+    public function createQueryBuilder();
     public function getRepository();
     public function create();
     public function supports($class);
