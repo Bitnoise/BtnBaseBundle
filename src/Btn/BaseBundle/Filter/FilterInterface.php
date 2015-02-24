@@ -69,7 +69,7 @@ interface FilterInterface
      * @param  Request         $request
      * @return FilterInterface
      */
-    public function setRequest(Request $request);
+    public function setRequest(Request $request = null);
 
     /**
      * @return Request
