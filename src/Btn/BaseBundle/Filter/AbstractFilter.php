@@ -40,6 +40,8 @@ abstract class AbstractFilter implements FilterInterface
                 $this->queryBuilder = $repo->getFilterQueryBuilder();
             } elseif (method_exists($repo, 'getBaseQueryBuilder')) {
                 $this->queryBuilder = $repo->getBaseQueryBuilder();
+            } else {
+                $this->queryBuilder = $this->entityProvider->createQueryBuilder();
             }
         }
 
