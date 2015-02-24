@@ -221,7 +221,7 @@ abstract class AbstractFilter implements FilterInterface
             return $request->get($field, $default);
         }
 
-        throw new \Exception();
+        throw new \Exception('Could not get value nether from form and request');
     }
 
     /**
