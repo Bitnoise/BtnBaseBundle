@@ -76,3 +76,10 @@ services:
         abstract: true
         calls:
             - [setFormFactory, [@form.factory]]
+
+    btn_base.filter.abstract_request_filter:
+        parent: btn_base.filter.abstract_filter
+        abstract: true
+        scope: request
+        calls:
+            - [setRequest, [@request]]
