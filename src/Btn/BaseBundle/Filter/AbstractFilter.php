@@ -57,6 +57,14 @@ abstract class AbstractFilter implements FilterInterface
     /**
      * {@inheritdoc}
      */
+    public function hasEntityProvider()
+    {
+        return $this->entityProvider ? true : false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setType(AbstractFilterForm $type)
     {
         $this->type = $type;

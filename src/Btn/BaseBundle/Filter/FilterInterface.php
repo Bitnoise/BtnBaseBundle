@@ -23,6 +23,11 @@ interface FilterInterface
     public function getEntityProvider();
 
     /**
+     * @return boolean
+     */
+    public function hasEntityProvider();
+
+    /**
      * @param  AbstractFilterForm $type
      * @return AbstractFilter
      */
