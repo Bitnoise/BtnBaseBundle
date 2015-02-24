@@ -212,7 +212,9 @@ abstract class AbstractFilter implements FilterInterface
     public function getValue($field, $default = null)
     {
         if (($form = $this->getForm())) {
-            return $form->get($field)->getData() ?: $default;
+            $data = $form->get($field)->getData();
+
+            return (null !== $data) ? $data : $default;
         }
 
         if (($request = $this->getRequest())) {
