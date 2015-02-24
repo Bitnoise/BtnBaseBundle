@@ -144,6 +144,20 @@ class BundleHelper
     /**
      *
      */
+    public function getFilterId($class)
+    {
+        $className = $this->getClassName($class);
+
+        if (preg_match(('~\\\\([A-Za-z0-9]+)ControlController$~'), $className, $matches)) {
+            return $this->getBundleAlias($class).'.filter.'.Container::underscore($matches[1]);
+        }
+
+        throw new \Exception(sprintf('Could not get filter id from "%s"', $className));
+    }
+
+    /**
+     *
+     */
     public function getFormId($class)
     {
         $bundleAlias    = $this->getBundleAlias($class);
