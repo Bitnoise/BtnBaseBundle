@@ -53,6 +53,17 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     /**
      *
      */
+    public function getAlias()
+    {
+        $class = $this->getClass();
+        $className = substr($class, strrpos($class, '\\') + 1);
+
+        return strtolower(preg_replace('~[^A-Z]~', '', $className));
+    }
+
+    /**
+     *
+     */
     public function getRepository()
     {
         return $this->em->getRepository($this->getClass());
