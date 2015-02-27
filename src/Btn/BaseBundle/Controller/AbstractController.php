@@ -186,17 +186,6 @@ abstract class AbstractController extends Controller
     }
 
     /**
-     * Create access denied http exception
-     *
-     * @param  string                                                            $message
-     * @return \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
-     */
-    public function createAccessDeniedException($message = 'Access Denied')
-    {
-        return new AccessDeniedHttpException($message);
-    }
-
-    /**
      * Validate csrf token or throw exception
      *
      * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
