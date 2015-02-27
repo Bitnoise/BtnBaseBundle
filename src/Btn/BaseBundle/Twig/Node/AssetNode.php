@@ -20,14 +20,14 @@ class AssetNode extends \Twig_Node
         if ($asset) {
             $compiler
                 ->write('$context[')->repr($assetUrlVar)->raw('] = ')
-                ->raw('$this->env->getExtension(\'assets\')->getAssetUrl(')
+                ->raw('$this->env->getExtension(\'asset\')->getAssetUrl(')
                 ->string($asset->getTargetPath())
                 ->raw(");\n")
             ;
         } elseif ($nameVar) {
             $compiler
                 ->write('$context[')->repr($assetUrlVar)->raw('] = ')
-                ->raw('$this->env->getExtension(\'assets\')->getAssetUrl(')
+                ->raw('$this->env->getExtension(\'asset\')->getAssetUrl(')
                 ->raw('$context[')->repr($nameVar)->raw(']->getTargetPath()')
                 ->raw(");\n")
             ;
