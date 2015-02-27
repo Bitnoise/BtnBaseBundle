@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType as BaseAbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
 use Btn\BaseBundle\Provider\EntityProviderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -107,7 +107,7 @@ abstract class AbstractType extends BaseAbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
 

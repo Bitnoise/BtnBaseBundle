@@ -3,11 +3,11 @@
 namespace Btn\BaseBundle\Form;
 
 use Btn\BaseBundle\Form\Type\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 abstract class AbstractFilterForm extends AbstractType
 {
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
 
