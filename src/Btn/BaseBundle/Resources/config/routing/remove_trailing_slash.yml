@@ -1,6 +1,6 @@
 btn_base.remove_trailing_slash:
     path: /{url}
     defaults: { _controller: BtnBaseBundle:Redirecting:removeTrailingSlash }
+    methods: [GET]
     requirements:
         url: .*/$
-        methods: [GET]
