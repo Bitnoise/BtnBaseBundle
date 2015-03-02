@@ -28,7 +28,7 @@ class Youtube
     /**
      *
      */
-    public static function isValidId($id) 
+    public static function isValidId($id)
     {
         return preg_match(self::ID_REGEXP, $id) ? true : false;
     }
@@ -36,7 +36,7 @@ class Youtube
     /**
      *
      */
-    public static function getVideoId($input) 
+    public static function getVideoId($input)
     {
         if (self::isValidUrl($input)) {
             return self::getVideoIdFromUrl($input);
