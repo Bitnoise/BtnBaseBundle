@@ -39,7 +39,7 @@ class Youtube
     public static function getVideoId($input) 
     {
         if (self::isValidUrl($input)) {
-            return self::getVideoIdFromUrl($url);
+            return self::getVideoIdFromUrl($input);
         } elseif (self::isValidId($input)) {
             return $input;
         }
