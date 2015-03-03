@@ -4,7 +4,8 @@ namespace Btn\BaseBundle\Util;
 
 class Youtube
 {
-    const URL_REGEXP = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i';
+    const URL_REGEXP =
+        '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i';
     const ID_REGEXP = '%^[^"&?/ ]{11}$%i';
 
     /**
