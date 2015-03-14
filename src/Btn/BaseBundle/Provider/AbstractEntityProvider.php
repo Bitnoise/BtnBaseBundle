@@ -3,6 +3,7 @@
 namespace Btn\BaseBundle\Provider;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 
 abstract class AbstractEntityProvider implements EntityProviderInterface
 {
@@ -10,14 +11,17 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     protected $em;
     /** @var string $class */
     protected $class;
+    /** @var \Doctrine\ORM\EntityRepository $repository */
+    protected $repositroy;
 
     /**
      *
      */
-    public function __construct($class, EntityManager $em = null)
+    public function __construct($class, EntityManager $em = null, EntityRepository $repositroy = null)
     {
-        $this->class = $class;
-        $this->em    = $em;
+        $this->class      = $class;
+        $this->em         = $em;
+        $this->repository = $repositroy;
     }
 
     /**
@@ -72,9 +76,17 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     /**
      *
      */
+    public function setRepository(EntityRepository $repositroy)
+    {
+        $this->repository = $repositroy;
+    }
+
+    /**
+     *
+     */
     public function getRepository()
     {
-        return $this->em->getRepository($this->getClass());
+        return $this->repository ? $this->repository : $this->em->getRepository($this->getClass());
     }
 
     /**
