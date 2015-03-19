@@ -119,7 +119,7 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
         $this->em->remove($entity);
 
         if ($andFlush) {
-            $this->em->flush($entity);
+            $this->em->flush();
         }
     }
 
