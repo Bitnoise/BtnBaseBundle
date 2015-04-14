@@ -169,7 +169,7 @@ abstract class AbstractController extends Controller
     {
         if (
             !$object->getUser()->getId() != $this->getUser()->getId()
-            && $this->get('security.context')->isGranted($roles)
+            && $this->get('security.authorization_checker')->isGranted($roles)
         ) {
             throw $this->createNotFoundException('You can not do this');
         }
@@ -182,7 +182,7 @@ abstract class AbstractController extends Controller
      **/
     public function isAuthenticated()
     {
-        return $this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY');
+        return $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY');
     }
 
     /**
