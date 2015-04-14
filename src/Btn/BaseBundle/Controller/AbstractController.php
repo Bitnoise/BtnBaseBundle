@@ -195,7 +195,7 @@ abstract class AbstractController extends Controller
      */
     public function validateCsrfTokenOrThrowException($intention, $token)
     {
-        if ( !$this->isCsrfTokenValid($intention, $token)) {
+        if (!$this->isCsrfTokenValid($intention, $token)) {
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
     }
