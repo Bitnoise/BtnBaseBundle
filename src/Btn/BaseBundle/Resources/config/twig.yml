@@ -14,7 +14,7 @@ services:
         class:  %btn_base.twig.csrf_path.class%
         arguments:
             router: @router
-            csrfProvider: @form.csrf_provider
+            csrfTokenManager: @security.csrf.token_manager
         tags:
             - { name: twig.extension }
 
