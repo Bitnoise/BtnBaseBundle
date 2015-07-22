@@ -3,6 +3,7 @@ parameters:
     btn_base.twig.csrf_path.class:  Btn\BaseBundle\Twig\CsrfPathExtension
     btn_base.twig.asset.class: Btn\BaseBundle\Twig\AssetExtension
     btn_base.twig.translation.class: Btn\BaseBundle\Twig\TranslationExtension
+    btn_base.twig.bundle.class: Btn\BaseBundle\Twig\BundleExtension
 
 services:
     btn_base.twig.file_size:
@@ -33,3 +34,11 @@ services:
             container: @service_container
         tags:
             - { name: twig.extension }
+
+    btn_base.twig.bundle:
+        class: %btn_base.twig.bundle.class%
+        arguments:
+            budnleHelper: @btn_base.helper.bundle
+        tags:
+            - { name: twig.extension }
+

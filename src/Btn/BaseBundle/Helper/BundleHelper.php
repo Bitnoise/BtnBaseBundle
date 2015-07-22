@@ -3,9 +3,21 @@
 namespace Btn\BaseBundle\Helper;
 
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class BundleHelper
 {
+    /** @var array $bundles */
+    private $bundles;
+
+    /**
+     * @param array $bundles
+     */
+    public function __construct(array $bundles)
+    {
+        $this->bundles = $bundles;
+    }
+
     /** @var \ReflectionClass[] $reflectionClasses */
     protected $reflectionClasses = array();
 
@@ -172,5 +184,19 @@ class BundleHelper
     public function getFormAlias($class)
     {
         return str_replace('.', '_', $this->getFormId($class));
+    }
+
+    /**
+     * Check if bundle is enabled
+     * @param  string       $bundle
+     * @return boolean|null
+     */
+    public function isEnabled($bundle)
+    {
+        if ($bundle) {
+            return array_key_exists($bundle, $this->bundles);
+        }
+
+        return null;
     }
 }

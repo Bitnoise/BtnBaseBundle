@@ -18,6 +18,8 @@ services:
 
     btn_base.helper.bundle:
         public: false
+        arguments:
+            bundles: %kernel.bundles%
         class: %btn_base.helper.bundle.class%
 
     btn_base.event_listener.preexecute:
