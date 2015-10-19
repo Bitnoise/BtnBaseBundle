@@ -33,6 +33,9 @@ class DoctrineTableEventListener
 
             foreach ($annotations as $annotation) {
                 if ($annotation instanceof Table) {
+                    if (!array_key_exists('options', $metadata->table)) {
+                        $metadata->table['options'] = array();
+                    }
                     $metadata->table['options'] = array_merge($metadata->table['options'], $this->options);
                 }
             }
