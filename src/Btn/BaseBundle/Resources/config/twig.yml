@@ -4,6 +4,7 @@ parameters:
     btn_base.twig.asset.class: Btn\BaseBundle\Twig\AssetExtension
     btn_base.twig.translation.class: Btn\BaseBundle\Twig\TranslationExtension
     btn_base.twig.bundle.class: Btn\BaseBundle\Twig\BundleExtension
+    btn_base.twig.html.class: Btn\BaseBundle\Twig\HtmlExtension
 
 services:
     btn_base.twig.file_size:
@@ -42,3 +43,7 @@ services:
         tags:
             - { name: twig.extension }
 
+    btn_base.twig.html:
+        class: %btn_base.twig.html.class%
+        tags:
+            - { name: twig.extension }
