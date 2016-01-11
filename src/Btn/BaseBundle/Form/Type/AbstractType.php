@@ -3,6 +3,8 @@
 namespace Btn\BaseBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType as BaseAbstractType;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -94,6 +96,24 @@ abstract class AbstractType extends BaseAbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
+
+        $self = $this;
+
+        if ($self->entityProvider) {
+            $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($self) {
+                $data = $event->getData();
+                if (!$data || is_object($data)) {
+                    return;
+                }
+
+                $data = $self->entityProvider->getRepository()->find($data);
+                if (!$data) {
+                    return;
+                }
+
+               $event->setData($data);
+            });
+        }
     }
 
     /**
