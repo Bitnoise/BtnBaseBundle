@@ -20,7 +20,7 @@ class HtmlExtension extends \Twig_Extension
             return;
         }
 
-        return preg_match('~^<[^>+]>~', $input) ? true : false;
+        return preg_match('~^<[^>]+>~', $input) ? true : false;
     }
 
     /**
