@@ -18,4 +18,5 @@ interface EntityProviderInterface
     public function supports($class);
     public function delete($entity, $andFlush = true);
     public function save($entity, $andFlush = true);
+    public function find($id);
 }
