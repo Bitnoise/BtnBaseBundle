@@ -12,20 +12,24 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     /** @var string $class */
     protected $class;
     /** @var \Doctrine\ORM\EntityRepository $repository */
-    protected $repositroy;
+    protected $repository;
 
     /**
-     *
+     * @param string           $class
+     * @param EntityManager    $em
+     * @param EntityRepository $repository
      */
-    public function __construct($class, EntityManager $em = null, EntityRepository $repositroy = null)
+    public function __construct($class, EntityManager $em = null, EntityRepository $repository = null)
     {
         $this->class      = $class;
         $this->em         = $em;
-        $this->repository = $repositroy;
+        $this->repository = $repository;
     }
 
     /**
+     * @param EntityManager $em
      *
+     * @return $this
      */
     public function setEntityManager(EntityManager $em)
     {
@@ -74,11 +78,11 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     }
 
     /**
-     *
+     * @param EntityRepository $repository
      */
-    public function setRepository(EntityRepository $repositroy)
+    public function setRepository(EntityRepository $repository)
     {
-        $this->repository = $repositroy;
+        $this->repository = $repository;
     }
 
     /**
@@ -102,7 +106,20 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     }
 
     /**
+     * @param $id
      *
+     * @return null|object
+     */
+    public function find($id)
+    {
+        return $this->getRepository()->find($id);
+    }
+
+    /**
+     * @param $class
+     *
+     * @return bool
+     * @throws \Exception
      */
     public function supports($class)
     {
@@ -110,7 +127,10 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     }
 
     /**
+     * @param      $entity
+     * @param bool $andFlush
      *
+     * @throws \Exception
      */
     public function delete($entity, $andFlush = true)
     {
@@ -124,7 +144,10 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     }
 
     /**
+     * @param      $entity
+     * @param bool $andFlush
      *
+     * @throws \Exception
      */
     public function save($entity, $andFlush = true)
     {
@@ -140,7 +163,9 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     }
 
     /**
+     * @param $entity
      *
+     * @throws \Exception
      */
     protected function checkSupportOrThrowException($entity)
     {
