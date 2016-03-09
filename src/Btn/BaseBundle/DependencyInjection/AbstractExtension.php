@@ -48,11 +48,11 @@ abstract class AbstractExtension extends Extension implements PrependExtensionIn
         // try to load bitnoise standard common other extensions config files
         $loader = $this->getConfigLoader($container);
         $loader->tryLoadFromArray($this->commonExtConfigFiles);
-        // try to load BtnNodeBundle content provider service definiton file
+        // try to load BtnNodeBundle content provider service definition file
         $loader->tryLoadForExtension('btn_node');
 
         // $config = $this->getProcessedConfig($container, null, 'btn_base');
-        // automaticly register to assetic bundles
+        // automatically register to assetic bundles
         // if ($container->hasExtension('assetic')) {
         //     $container->prependExtensionConfig('assetic', array(
         //         'bundles' => array($this->getBundleName()),
