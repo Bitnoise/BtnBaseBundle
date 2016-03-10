@@ -28,6 +28,6 @@ class HtmlExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'btn_base.extension.translation';
+        return 'btn_base.extension.html';
     }
 }
