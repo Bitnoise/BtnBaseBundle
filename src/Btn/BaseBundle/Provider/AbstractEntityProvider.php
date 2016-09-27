@@ -100,6 +100,11 @@ abstract class AbstractEntityProvider implements EntityProviderInterface
     {
         $class = $this->getClass();
 
+        $args = func_get_args();
+        if ($args) {
+            return call_user_func_array(array(new \ReflectionClass($class), 'newInstance'), $args);
+        }
+
         $entity = new $class();
 
         return $entity;
