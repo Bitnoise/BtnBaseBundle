@@ -34,19 +34,6 @@ abstract class AbstractController extends Controller
     }
 
     /**
-     * Renders array into JSON.
-     *
-     * @param array    $array
-     * @param Response $response
-     *
-     * @return Response A Response instance
-     */
-    public function json(array $array, Response $response = null)
-    {
-        return $this->container->get('btn_base.helper.templating')->json($array, $response);
-    }
-
-    /**
      * Shortcut to return Doctrine EntityManager service.
      *
      * @param string $name

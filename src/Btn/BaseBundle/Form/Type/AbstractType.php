@@ -2,6 +2,7 @@
 
 namespace Btn\BaseBundle\Form\Type;
 
+use Btn\BaseBundle\Form\FormRegistry;
 use Symfony\Component\Form\AbstractType as BaseAbstractType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
@@ -29,9 +30,13 @@ abstract class AbstractType extends BaseAbstractType
     protected $assetLoader;
     /** @var \Symfony\Component\Routing\RouterInterface $router */
     protected $router;
+    /** @var FormRegistry */
+    protected $formRegistry;
 
     /**
+     * @param $class
      *
+     * @return $this
      */
     public function setClass($class)
     {
@@ -41,7 +46,9 @@ abstract class AbstractType extends BaseAbstractType
     }
 
     /**
+     * @param EntityManager $entityManager
      *
+     * @return $this
      */
     public function setEntityManager(EntityManager $entityManager)
     {
@@ -51,7 +58,9 @@ abstract class AbstractType extends BaseAbstractType
     }
 
     /**
+     * @param EntityProviderInterface $entityProvider
      *
+     * @return $this
      */
     public function setEntityProvider(EntityProviderInterface $entityProvider)
     {
@@ -61,7 +70,9 @@ abstract class AbstractType extends BaseAbstractType
     }
 
     /**
+     * @param TranslatorInterface $translator
      *
+     * @return $this
      */
     public function setTranslator(TranslatorInterface $translator)
     {
@@ -71,7 +82,9 @@ abstract class AbstractType extends BaseAbstractType
     }
 
     /**
+     * @param AssetLoaderInterface $assetLoader
      *
+     * @return $this
      */
     public function setAssetLoader(AssetLoaderInterface $assetLoader)
     {
@@ -81,13 +94,23 @@ abstract class AbstractType extends BaseAbstractType
     }
 
     /**
+     * @param RouterInterface $router
      *
+     * @return $this
      */
     public function setRouter(RouterInterface $router)
     {
         $this->router = $router;
 
         return $this;
+    }
+
+    /**
+     * @param FormRegistry $formRegistry
+     */
+    public function setFormRegistry(FormRegistry $formRegistry)
+    {
+        $this->formRegistry = $formRegistry;
     }
 
     /**
@@ -144,7 +167,7 @@ abstract class AbstractType extends BaseAbstractType
     protected function trans($id, array $parameters = array(), $domain = null, $locale = null)
     {
         if (!$this->translator) {
-            throw new \Exception('Translator was not injectet into form');
+            throw new \Exception('Translator was not injected into form');
         }
 
         return $this->translator->trans($id, $parameters, $domain, $locale);

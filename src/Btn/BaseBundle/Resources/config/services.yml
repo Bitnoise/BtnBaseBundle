@@ -11,77 +11,85 @@ parameters:
     btn_base.provider.entity.class: Btn\BaseBundle\Provider\EntityProvider
     btn_base.provider.abstract_entity.class: Btn\BaseBundle\Provider\AbstractEntityProvider
     btn_base.filter.abstract_filter.class: Btn\BaseBundle\Filter\AbstractFilter
+    btn_base.form.registry.class: Btn\BaseBundle\Form\FormRegistry
 
 services:
     btn_base.helper.templating:
-        class: %btn_base.helper.templating.class%
+        class: '%btn_base.helper.templating.class%'
 
     btn_base.helper.bundle:
         public: false
         arguments:
-            bundles: %kernel.bundles%
-        class: %btn_base.helper.bundle.class%
+            bundles: '%kernel.bundles%'
+        class: '%btn_base.helper.bundle.class%'
 
     btn_base.event_listener.preexecute:
-        class: %btn_base.event_listener.preexecute.class%
-        arguments: [@controller_resolver]
+        class: '%btn_base.event_listener.preexecute.class%'
+        arguments:
+          - '@controller_resolver'
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
         priority: -1000
 
     btn_base.event_listener.livereload:
-        class: %btn_base.event_listener.livereload.class%
-        arguments: [%btn_base.livereload.enabled%, %btn_base.livereload.host%, %btn_base.livereload.port%]
+        class: '%btn_base.event_listener.livereload.class%'
+        arguments:
+          - '%btn_base.livereload.enabled%'
+          - '%btn_base.livereload.host%'
+          - '%btn_base.livereload.port%'
         tags:
             - { name: kernel.event_subscriber }
 
     btn_base.event_listener.doctrine_table:
-        class: %btn_base.event_listener.doctrine_table.class%
-        arguments: [%btn_base.doctrine.table.options%]
+        class: '%btn_base.event_listener.doctrine_table.class%'
+        arguments: ['%btn_base.doctrine.table.options%']
         tags:
             - { name: doctrine.event_listener, event: loadClassMetadata }
 
     btn_base.assetic.storage.asset:
-        class: %btn_base.assetic.storage.asset.class%
+        class: '%btn_base.assetic.storage.asset.class%'
 
-    btn_base.asset_storage: @btn_base.assetic.storage.asset
+    btn_base.asset_storage: '@btn_base.assetic.storage.asset'
 
     btn_base.assetic.manager.asset:
-        class: %btn_base.assetic.manager.asset.class%
+        class: '%btn_base.assetic.manager.asset.class%'
         arguments:
-            factory: @assetic.asset_factory
+            factory: '@assetic.asset_factory'
             loaders:
-                config: @assetic.config_loader
+                config: '@assetic.config_loader'
 
-    btn_base.asset_manager: @btn_base.assetic.manager.asset
+    btn_base.asset_manager: '@btn_base.assetic.manager.asset'
 
     btn_base.assetic.loader.asset:
-        class: %btn_base.assetic.loader.asset.class%
+        class: '%btn_base.assetic.loader.asset.class%'
         arguments:
-            storage: @btn_base.assetic.storage.asset
-            manager: @btn_base.asset_manager
+            storage: '@btn_base.assetic.storage.asset'
+            manager: '@btn_base.asset_manager'
 
-    btn_base.asset_loader: @btn_base.assetic.loader.asset
+    btn_base.asset_loader: '@btn_base.assetic.loader.asset'
 
     btn_base.assetic.factory.worker.unuse_controller:
-        class: %btn_base.assetic.factory.worker.unuse_controller.class%
+        class: '%btn_base.assetic.factory.worker.unuse_controller.class%'
         public: false
 
     btn_base.provider.abstract_entity:
-        class: %btn_base.provider.abstract_entity.class%
+        class: '%btn_base.provider.abstract_entity.class%'
         abstract: true
         calls:
-            - [setEntityManager, [@doctrine.orm.entity_manager]]
+            - [setEntityManager, ['@doctrine.orm.entity_manager']]
 
     btn_base.filter.abstract_filter:
-        class: %btn_base.filter.abstract_filter.class%
+        class: '%btn_base.filter.abstract_filter.class%'
         abstract: true
         calls:
-            - [setFormFactory, [@form.factory]]
+            - [setFormFactory, ['@form.factory']]
 
     btn_base.filter.abstract_request_filter:
         parent: btn_base.filter.abstract_filter
         abstract: true
         scope: request
         calls:
-            - [setRequest, [@request]]
+            - [setRequest, ['@request']]
+
+    btn_base.form.registry:
+        class: '%btn_base.form.registry.class%'

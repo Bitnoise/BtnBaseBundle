@@ -17,7 +17,9 @@ class AssetExtension extends \Twig_Extension
     protected $loader;
 
     /**
-     *
+     * @param AssetStorageInterface $storage
+     * @param AssetManager          $manager
+     * @param AssetLoaderInterface  $loader
      */
     public function __construct(AssetStorageInterface $storage, AssetManager $manager, AssetLoaderInterface $loader)
     {

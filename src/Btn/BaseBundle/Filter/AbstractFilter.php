@@ -8,6 +8,7 @@ use Btn\BaseBundle\Form\AbstractFilterForm;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Btn\BaseBundle\Provider\EntityProviderInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Base filter class
@@ -115,7 +116,8 @@ abstract class AbstractFilter implements FilterInterface
      */
     public function createForm($data = null, array $options = array())
     {
-        $form = $this->formFactory->create($this->getType(), $data, $options);
+
+        $form = $this->formFactory->create($this->getFormFactoryType(), $data, $options);
 
         $this->setForm($form);
 
@@ -222,6 +224,19 @@ abstract class AbstractFilter implements FilterInterface
         }
 
         throw new \Exception('Could not get value nether from form and request');
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getFormFactoryType()
+    {
+        $type = $this->getType();
+        if (Kernel::VERSION_ID < 20800) {
+            $type;
+        }
+
+        return get_class($type);
     }
 
     /**
