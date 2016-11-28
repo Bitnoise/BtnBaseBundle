@@ -1,49 +1,49 @@
 parameters:
-    btn_base.twig.file_size.class: Btn\BaseBundle\Twig\FileSizeExtension
-    btn_base.twig.csrf_path.class:  Btn\BaseBundle\Twig\CsrfPathExtension
-    btn_base.twig.asset.class: Btn\BaseBundle\Twig\AssetExtension
-    btn_base.twig.translation.class: Btn\BaseBundle\Twig\TranslationExtension
-    btn_base.twig.bundle.class: Btn\BaseBundle\Twig\BundleExtension
-    btn_base.twig.html.class: Btn\BaseBundle\Twig\HtmlExtension
+    btn_base.twig.file_size.class: 'Btn\BaseBundle\Twig\FileSizeExtension'
+    btn_base.twig.csrf_path.class:  'Btn\BaseBundle\Twig\CsrfPathExtension'
+    btn_base.twig.asset.class: 'Btn\BaseBundle\Twig\AssetExtension'
+    btn_base.twig.translation.class: 'Btn\BaseBundle\Twig\TranslationExtension'
+    btn_base.twig.bundle.class: 'Btn\BaseBundle\Twig\BundleExtension'
+    btn_base.twig.html.class: 'Btn\BaseBundle\Twig\HtmlExtension'
 
 services:
     btn_base.twig.file_size:
-        class: %btn_base.twig.file_size.class%
+        class: '%btn_base.twig.file_size.class%'
         tags:
             - { name: twig.extension }
 
     btn_base.twig.csrf_path:
         class:  %btn_base.twig.csrf_path.class%
         arguments:
-            router: @router
-            csrfTokenManager: @security.csrf.token_manager
+            router: '@router'
+            csrfTokenManager: '@security.csrf.token_manager'
         tags:
             - { name: twig.extension }
 
     btn_base.twig.asset:
-        class: %btn_base.twig.asset.class%
+        class: '%btn_base.twig.asset.class%'
         arguments:
-            storage: @btn_base.asset_storage
-            manager: @btn_base.asset_manager
-            loader: @btn_base.asset_loader
+            storage: '@btn_base.asset_storage'
+            manager: '@btn_base.asset_manager'
+            loader: '@btn_base.asset_loader'
         tags:
             - { name: twig.extension }
 
     btn_base.twig.translation:
-        class: %btn_base.twig.translation.class%
+        class: '%btn_base.twig.translation.class%'
         arguments:
-            container: @service_container
+            container: '@service_container'
         tags:
             - { name: twig.extension }
 
     btn_base.twig.bundle:
-        class: %btn_base.twig.bundle.class%
+        class: '%btn_base.twig.bundle.class%'
         arguments:
-            budnleHelper: @btn_base.helper.bundle
+            budnleHelper: '@btn_base.helper.bundle'
         tags:
             - { name: twig.extension }
 
     btn_base.twig.html:
-        class: %btn_base.twig.html.class%
+        class: '%btn_base.twig.html.class%'
         tags:
             - { name: twig.extension }

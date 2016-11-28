@@ -17,5 +17,7 @@ class BtnBaseBundle extends Bundle
 
         $container->addCompilerPass(new Compiler\AsseticCompilerPass());
         $container->addCompilerPass(new Compiler\AssetManagerCompilerPass());
+        $container->addCompilerPass(new Compiler\RequestCompilerPass());
+        $container->addCompilerPass(new Compiler\FormCompilerPass());
     }
 }

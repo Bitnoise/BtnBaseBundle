@@ -3,6 +3,7 @@
 namespace Btn\BaseBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\Config\FileLocator;
@@ -63,7 +64,11 @@ abstract class AbstractExtension extends Extension implements PrependExtensionIn
     }
 
     /**
+     * @param ContainerBuilder $container
+     * @param string|null      $rootDir
+     * @param string|null      $resourceDir
      *
+     * @return ConfigLoader
      */
     protected function getConfigLoader(ContainerBuilder $container, $rootDir = null, $resourceDir = null)
     {
@@ -76,7 +81,8 @@ abstract class AbstractExtension extends Extension implements PrependExtensionIn
             $resourceDir = $this->resourceDir;
         }
 
-        $loader = new ConfigLoader($container, new FileLocator($rootDir.$this->resourceDir));
+        $yamlFileLoader = new YamlFileLoader($container,  new FileLocator($rootDir.$this->resourceDir));
+        $loader = new ConfigLoader($container, $yamlFileLoader);
 
         return $loader;
     }

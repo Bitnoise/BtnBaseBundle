@@ -2,6 +2,8 @@
 
 namespace Btn\BaseBundle\Util;
 
+use Symfony\Component\HttpKernel\Kernel;
+
 class Form
 {
     public static function getExpr($bindedData, $expr, $filters, $filterForm)
@@ -24,5 +26,19 @@ class Form
         }
 
         return $result;
+    }
+
+    /**
+     * @param $input
+     *
+     * @return string
+     */
+    public static function getFormName(array $input)
+    {
+        if (Kernel::VERSION_ID < 20800) {
+            return $input['alias'];
+        }
+
+        return $input['class'];
     }
 }
